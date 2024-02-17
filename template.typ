@@ -132,12 +132,16 @@
     )
   }
 
-  outline(
-    title: translations.abbildungsverzeichnis,
-    depth: 3,
-    indent: true,
-    target: figure,
-  )
+  locate(loc => {
+      if counter(figure).final(loc).at(0) > 0 {
+        outline(
+          title: translations.abbildungsverzeichnis,
+          depth: 3,
+          indent: true,
+          target: figure,
+        )
+      }
+  })
 
   pagebreak()
 
