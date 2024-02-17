@@ -1,0 +1,24 @@
+{
+    "de": {
+        "abbildungsverzeichnis": "Abbildungsverzeichnis",
+        "appendix": "Appendix",
+        "kapitel": "Kapitel",
+        "erstgutachter": "Erstgutachter",
+        "zweitgutachter": "Zweitgutachter",
+        "betreuung": "Betreuung",
+        "meta": {
+            "monatZeitPrefix": "im"
+        }
+    },
+    "en": {
+        "abbildungsverzeichnis": "Table of figures",
+        "appendix": "Appendix",
+        "kapitel": "Chapter",
+        "erstgutachter": "First appraiser",
+        "zweitgutachter": "Second appraiser",
+        "betreuung": "Supervisor",
+        "meta": {
+            "monatZeitPrefix": "in"
+        }
+    }
+}

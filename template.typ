@@ -1,4 +1,5 @@
 #let Bachelor(
+  language: "de",
   title: "Platzhaltertitel für eine Bachelorarbeit: Eine Vorläufige Betrachtung",
   authors: (
     (
@@ -31,11 +32,13 @@
       #lorem(100)
     ]
   ),
-  location: "Berlin" ,
+  location: "Berlin",
   body
   ) = {
+  let translations = json("translations.json").at(language)
+
   set document(author: authors.map(a => a.name), title: title)
-  set text(font: "Linux Libertine", lang: "de", weight: 500, size: 12pt,)
+  set text(font: "Linux Libertine", lang: language, weight: 500, size: 12pt,)
   set heading(numbering: "1.1")
 
   grid(
@@ -83,47 +86,46 @@
 
   v(2.4fr)
   grid(
-  columns: (auto, auto),
-  rows: (auto, auto),
-  row-gutter: 15pt,
-  column-gutter: 5pt,
-  [Erstgutacher:],
-  [#first_appraiser],
-  [Zweitgutachter:],
-  [#second_appraiser],
-  [Betreuung:],
-  [#supervisor]
+    columns: (auto, auto),
+    rows: (auto, auto),
+    row-gutter: 15pt,
+    column-gutter: 5pt,
+    [#translations.erstgutachter:],
+    [#first_appraiser],
+    [#translations.zweitgutachter:],
+    [#second_appraiser],
+    [#translations.betreuung:],
+    [#supervisor]
   )
  
   v(.5fr)
   text(
     [
-      Frankfurt am Main, im #datetime.today().display("[month repr:long] [year]")
+      Frankfurt am Main, #translations.meta.monatZeitPrefix #datetime.today().display("[month repr:long] [year]")
     ]
   )
   v(.5fr)
   pagebreak()
     
   set block(spacing: .65em)
-  set text(font: "Linux Libertine", lang: "de", weight: 400, size: 12pt)
+  set text(font: "Linux Libertine", lang: language, weight: 400, size: 12pt)
 
   show outline.entry.where(
-  level: 1
-): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
+    level: 1
+  ): it => {
+    v(12pt, weak: true)
+    strong(it)
+  }
 
   outline(
     depth: 3,
     indent: true,
-    title:"Inhaltsverzeichnis",
     target: heading.where(supplement: [Kapitel])
   )
 
   if appendix.len() > 0 {
     outline(
-      title: [Appendix],
+      title: translations.appendix,
       depth: 3,
       indent: true,
       target: heading.where(supplement: [Appendix]),
@@ -131,14 +133,15 @@
   }
 
   outline(
-    title: [Abbildungsverzeichnis],
+    title: translations.abbildungsverzeichnis,
     depth: 3,
     indent: true,
     target: figure,
   )
 
   pagebreak()
-  // Main body.
+
+  // Main body
   set par(justify: true, leading: 1em)
   set page(numbering: "1")
   set page(numbering: "1", number-align: center)
@@ -153,13 +156,12 @@
 
   pagebreak()
 
-  //Appendix
-
+  // Appendix
   if appendix.len() > 0 {
     counter(heading).update(0)
     set heading(numbering: none)
     set page(numbering: "I")
-    heading("Appendix",outlined: false)
+    heading(translations.appendix, outlined: false)
     set heading(numbering: "A")
 
     appendix.join()
@@ -167,16 +169,15 @@
     pagebreak()
   }
 
+  // Eigenständigkeitserklärung
   set heading(numbering: none)
   set page(numbering: none)
   heading("Eigenständigkeitserklärung", outlined: false)
-  [Ich versichere hiermit, dass ich die vorliegende Arbeit selbständig verfasst und keine anderen als die angegebenen Quellen benutzt habe. Alle Stellen, die wörtlich oder sinngemäß anderen Quellen entnommen wurden, sind als solche kenntlich gemacht. Die Zeichnungen, Abbildungen und Tabellen in dieser Arbeit sind von mir selbst erstellt oder wurden mit einem entsprechenden Quellennachweis versehen. Diese Arbeit wurde weder in gleicher noch in ähnlicher Form von mir an dieser oder an anderen Hochschulen eingereicht.]
+  text(lang: "de", content: "Ich versichere hiermit, dass ich die vorliegende Arbeit selbständig verfasst und keine anderen als die angegebenen Quellen benutzt habe. Alle Stellen, die wörtlich oder sinngemäß anderen Quellen entnommen wurden, sind als solche kenntlich gemacht. Die Zeichnungen, Abbildungen und Tabellen in dieser Arbeit sind von mir selbst erstellt oder wurden mit einem entsprechenden Quellennachweis versehen. Diese Arbeit wurde weder in gleicher noch in ähnlicher Form von mir an dieser oder an anderen Hochschulen eingereicht.")
 
   v(8%)
   line(length: 50%)
   [#strong(authors.map(author => author.name).join(", "))
   #linebreak()
   #location, den #datetime.today().display("[day].[month].[year]")]
-
-
 }
