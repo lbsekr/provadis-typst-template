@@ -121,12 +121,14 @@
     target: heading.where(supplement: [Kapitel])
   )
 
-  outline(
-    title: [Appendix],
-    depth: 3,
-    indent: true,
-    target: heading.where(supplement: [Appendix]),
-  )
+  if appendix.len() > 0 {
+    outline(
+      title: [Appendix],
+      depth: 3,
+      indent: true,
+      target: heading.where(supplement: [Appendix]),
+    )
+  }
 
   outline(
     title: [Abbildungsverzeichnis],
@@ -152,15 +154,18 @@
   pagebreak()
 
   //Appendix
-  counter(heading).update(0)
-  set heading(numbering: none)
-  set page(numbering: "I")
-  heading("Appendix",outlined: false)
-  set heading(numbering: "A")
 
-  appendix.join()
+  if appendix.len() > 0 {
+    counter(heading).update(0)
+    set heading(numbering: none)
+    set page(numbering: "I")
+    heading("Appendix",outlined: false)
+    set heading(numbering: "A")
 
-  pagebreak()
+    appendix.join()
+
+    pagebreak()
+  }
 
   set heading(numbering: none)
   set page(numbering: none)
