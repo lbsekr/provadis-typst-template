@@ -1,0 +1,26 @@
+name: Build and publish Typst document
+on: push
+
+jobs:
+  build_typst_documents:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+      - name: Build Typst document
+        uses: lvignoli/typst-action@main
+        with:
+          source_file: main.typ
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: main.pdf
+          path: main.pdf
+      # - name: Upload to Discord
+      #   uses: sinshutu/upload-to-discord@master
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   with:
+      #     args: main.pdf
