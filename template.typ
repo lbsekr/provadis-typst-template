@@ -22,6 +22,7 @@
   first_appraiser: "Prof. Müller",
   second_appraiser: "Dr. Kunze",
   supervisor: "Dr. Peter",
+  bib: none,
   appendix: (
     [
       #heading("Wichtiger Anhang",supplement: [Appendix])
@@ -154,11 +155,12 @@
 
   body
 
-  set page(numbering: "I")
-  counter(page).update(1)
-  bibliography("sources.bib")
-
-  pagebreak()
+  if bib != none {
+    set page(numbering: "I")
+    counter(page).update(1)
+    bibliography(bib)
+    pagebreak()
+  }
 
   // Appendix
   if appendix.len() > 0 {

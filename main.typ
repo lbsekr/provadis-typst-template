@@ -1,6 +1,6 @@
 #import "template.typ": Bachelor
 
-#show: Bachelor.with()
+#show: Bachelor.with(bib: "sources.bib")
 
 = Einleitung
 #lorem(100)#pagebreak()
