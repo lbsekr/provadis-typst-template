@@ -123,7 +123,7 @@
   outline(
     depth: 3,
     indent: true,
-    target: heading.where(supplement: [Kapitel])
+    target: heading.where(supplement: [translations.kapitel])
   )
 
   if appendix.len() > 0 {
@@ -131,7 +131,7 @@
       title: translations.appendix,
       depth: 3,
       indent: true,
-      target: heading.where(supplement: [Appendix]),
+      target: heading.where(supplement: [translations.appendix]),
     )
   }
 
@@ -153,7 +153,7 @@
   set page(numbering: "1")
   set page(numbering: "1", number-align: center)
   counter(page).update(1)
-  set heading(supplement: [Kapitel])
+  set heading(supplement: [translations.kapitel])
 
   body
 
