@@ -101,9 +101,10 @@
   )
  
   v(.5fr)
+  // Workaroung um Monate in der ausgewählte Sprache (deutsch,english) anzuzeigen, bis Typst es out-of-the-box unterstüzt
   text(
     [
-      Frankfurt am Main, #translations.meta.monatZeitPrefix #datetime.today().display("[month repr:long] [year]")
+      Frankfurt am Main, #translations.meta.monatZeitPrefix #translations.monate.at(datetime.today().display("[month repr:long]")) #datetime.today().display("[year]")
     ]
   )
   v(.5fr)

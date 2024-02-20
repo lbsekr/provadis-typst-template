@@ -8,7 +8,22 @@
         "betreuung": "Betreuung",
         "meta": {
             "monatZeitPrefix": "im"
-        }
+        },
+        "monate": {
+            "January": "Januar",
+            "February": "Februar",
+            "March": "März",
+            "April": "April",
+            "May": "Mai",
+            "June": "Juni",
+            "July": "Juli",
+            "August": "August",
+            "September": "September",
+            "October": "Oktober",
+            "November": "November",
+            "December": "Dezember"
+        }          
+          
     },
     "en": {
         "abbildungsverzeichnis": "Table of figures",
@@ -19,6 +34,20 @@
         "betreuung": "Supervisor",
         "meta": {
             "monatZeitPrefix": "in"
+        },
+        "monate": {
+            "January": "January",
+            "February": "February",
+            "March": "March",
+            "April": "April",
+            "May": "May",
+            "June": "June",
+            "July": "July",
+            "August": "August",
+            "September": "September",
+            "October": "October",
+            "November": "November",
+            "December": "December"
         }
     }
 }
