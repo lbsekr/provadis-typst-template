@@ -1,6 +1,18 @@
 #import "template.typ": Bachelor
+#let translations = json("translations.json").at("de")
 
-#show: Bachelor.with(bib: "sources.bib")
+#show: Bachelor.with(bib: "sources.bib",appendix:
+ (
+    [
+      #heading("Wichtiger Anhang",supplement: [translations.appendix])
+      #lorem(100)
+    ],
+     [
+      #heading("Weiterer Wichtiger Anhang",supplement: [translations.appendix])
+      #lorem(100)
+    ]
+  )  
+)
 
 = Einleitung
 #lorem(100)#pagebreak()

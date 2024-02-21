@@ -23,16 +23,7 @@
   second_appraiser: "Dr. Kunze",
   supervisor: "Dr. Peter",
   bib: none,
-  appendix: (
-    [
-      #heading("Wichtiger Anhang",supplement: [Appendix])
-      #lorem(100)
-    ],
-     [
-      #heading("Weiterer Wichtiger Anhang",supplement: [Appendix])
-      #lorem(100)
-    ]
-  ),
+  appendix: (),
   location: "Berlin",
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   body
@@ -161,20 +152,18 @@
     set page(numbering: "I")
     counter(page).update(1)
     bibliography(bib)
-    pagebreak()
   }
 
   // Appendix
   if appendix.len() > 0 {
+    set page(numbering: "I")
     counter(heading).update(0)
     set heading(numbering: none)
-    set page(numbering: "I")
     heading(translations.appendix, outlined: false)
     set heading(numbering: "A")
 
     appendix.join()
 
-    pagebreak()
   }
 
   // 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅🦅🗽🗽🗽🔫🔫🔫
