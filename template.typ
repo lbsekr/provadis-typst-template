@@ -148,7 +148,8 @@
   set block(spacing: 1.2em)
   counter(page).update(1)
   set heading(supplement: [translations.kapitel])
-
+  show heading: it => block(it,below: 1.1em)
+  
   body
 
   if bib != none {
