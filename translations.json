@@ -5,6 +5,7 @@
         "kapitel": "Kapitel",
         "erstgutachter": "Erstgutachter",
         "zweitgutachter": "Zweitgutachter",
+        "endeDerBearbeitungsfrist": "Ende der Bearbeitungsfrist",
         "betreuung": "Betreuung",
         "meta": {
             "monatZeitPrefix": "im"
@@ -31,6 +32,7 @@
         "kapitel": "Chapter",
         "erstgutachter": "First appraiser",
         "zweitgutachter": "Second appraiser",
+        "endeDerBearbeitungsfrist": "End of the working period",
         "betreuung": "Supervisor",
         "meta": {
             "monatZeitPrefix": "in"

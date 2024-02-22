@@ -25,6 +25,7 @@
   bib: none,
   appendix: (),
   location: "Berlin",
+  deadline: "15.03.2024",
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   body
   ) = {
@@ -88,7 +89,9 @@
     [#translations.zweitgutachter:],
     [#second_appraiser],
     [#translations.betreuung:],
-    [#supervisor]
+    [#supervisor],
+    [#translations.endeDerBearbeitungsfrist:],
+    [#deadline]
   )
  
   v(.5fr)
