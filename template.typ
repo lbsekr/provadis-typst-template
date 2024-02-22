@@ -144,7 +144,6 @@
 
   // Main body
   set par(justify: true, leading: 1.1em)
-  set page(numbering: "1")
   set page(numbering: "1", number-align: center)
   set block(spacing: 1.2em)
   counter(page).update(1)
