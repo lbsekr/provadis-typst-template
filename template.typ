@@ -32,7 +32,7 @@
   let translations = json("translations.json").at(language)
 
   set document(author: authors.map(a => a.name), title: title)
-  set text(font: "Linux Libertine", lang: language, weight: 500, size: 12pt,)
+  set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
   set heading(numbering: "1.1")
 
   grid(
