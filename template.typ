@@ -105,7 +105,7 @@
   pagebreak()
     
   set block(spacing: .65em)
-  set text(font: "Linux Libertine", lang: language, weight: 400, size: 12pt)
+  set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
 
   show outline.entry.where(
     level: 1
