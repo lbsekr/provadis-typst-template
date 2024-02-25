@@ -13,9 +13,11 @@
   abstract: lorem(100),
   document-type: "Bachelorarbeit",
   reason: [
-    zur Erlangung des akademischen Grades ’Bachelor of Science’
-    B.Sc. im Studiengang Informatik \ \
-    vorgelegt dem Fachbereich Informatik der \
+    zur Erlangung des akademischen Grades \
+    ’Bachelor of Science’  B.Sc.\ 
+    im Studiengang Informatik \ \
+    vorgelegt dem Fachbereich \
+    Informatik und Wirtschaftsinformatik \ der \
     Provadis School of International Management and Technology \
     von
   ],
@@ -41,23 +43,24 @@
     align(right,logo),
   )
 
-  v(0.5fr)
+  v(2em)
 
   align(center, text(1.25em, weight: 600, document-type)) 
 
-  v(0.5fr)
+  v(2em)
 
   align(center,
     text(1.5em, title)
   )
 
-  v(1.5fr)
+  v(1em)
 
+  set par(justify: true, leading: 1em)
   align(center, 
     text(1.25em, reason),
   ) 
   
-  v(.5fr)
+  v(2em)
   set block(spacing: 1em)
   align(
     center,
@@ -83,7 +86,7 @@
     columns: (auto, auto),
     rows: (auto, auto),
     row-gutter: 15pt,
-    column-gutter: 5pt,
+    column-gutter: 15pt,
     [#translations.erstgutachter:],
     [#first_appraiser],
     [#translations.zweitgutachter:],
