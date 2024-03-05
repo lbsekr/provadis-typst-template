@@ -1,7 +1,7 @@
-#import "template.typ": Bachelor
+#import "template.typ": Template
 #let translations = json("translations.json").at("de")
 
-#show: Bachelor.with(bib: "sources.bib",appendix:
+#show: Template.with(bib: "sources.bib",appendix:
  (
     [
       #heading("Wichtiger Anhang",supplement: [translations.appendix])
