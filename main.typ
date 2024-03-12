@@ -1,4 +1,4 @@
-#import "template.typ": Template
+#import "template.typ": Template, todo
 #let translations = json("translations.json").at("de")
 
 #show: Template.with(bib: "sources.bib",appendix:
@@ -28,6 +28,7 @@
 #pagebreak()
 
 == Unterpunkt
+#todo()
 asdasdasdasdasd
 
 asdasdasdasdasd
@@ -36,6 +37,7 @@ asdasdasdasdasd
 asdasdas
 #lorem(100)
 === Unter-Unterpunkt
+#todo(body: "Hier ist noch was zu tun!")
 === Unter-Unterpunkt
 #pagebreak()
 

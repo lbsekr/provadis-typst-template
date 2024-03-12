@@ -1,3 +1,11 @@
+#let todo(body: "TODO") = {
+  rect(
+    fill: yellow,
+    radius: 1pt,
+    body
+  )
+}
+
 #let Template(
   language: "de",
   title: "Platzhaltertitel für eine Bachelorarbeit: Eine Vorläufige Betrachtung",
