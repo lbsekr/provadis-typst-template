@@ -128,7 +128,7 @@
   outline(
     depth: 3,
     indent: true,
-    target: heading.where(supplement: [translations.kapitel])
+    target: heading.where(supplement: [#translations.kapitel])
   )
 
   if appendix.len() > 0 {
@@ -136,7 +136,7 @@
       title: translations.appendix,
       depth: 3,
       indent: true,
-      target: heading.where(supplement: [translations.appendix]),
+      target: heading.where(supplement: [#translations.appendix]),
     )
   }
 

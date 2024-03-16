@@ -4,11 +4,11 @@
 #show: Template.with(bib: "sources.bib",appendix:
  (
     [
-      #heading("Wichtiger Anhang",supplement: [translations.appendix])
+      #heading("Wichtiger Anhang",supplement: [#translations.appendix])
       #lorem(100)
     ],
      [
-      #heading("Weiterer Wichtiger Anhang",supplement: [translations.appendix])
+      #heading("Weiterer Wichtiger Anhang",supplement: [#translations.appendix]) <ref>
       #lorem(100)
     ]
   )  
@@ -29,10 +29,7 @@
 
 == Unterpunkt
 #todo()
-asdasdasdasdasd
-
-asdasdasdasdasd
-asdasdasdasdasd
+@ref
 
 asdasdas
 #lorem(100)
