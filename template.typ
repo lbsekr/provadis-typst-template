@@ -158,7 +158,7 @@
   set page(numbering: "1", number-align: center)
   set block(spacing: 1.2em)
   counter(page).update(1)
-  set heading(supplement: [translations.kapitel])
+  set heading(supplement: [#translations.kapitel])
   show heading: it => block(it,below: 1.1em)
   
   body
