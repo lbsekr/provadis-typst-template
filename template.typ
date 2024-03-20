@@ -97,9 +97,13 @@
     column-gutter: 15pt,
     [#translations.erstgutachter:],
     [#first_appraiser],
-    [#translations.zweitgutachter:],
-    [#second_appraiser],
-    [#translations.betreuung:],
+    ..({if second_appraiser != none {
+            (
+              [#translations.zweitgutachter:],
+              [#second_appraiser]
+            )
+      }}
+    ),    [#translations.betreuung:],
     [#supervisor],
     [#translations.endeDerBearbeitungsfrist:],
     [#deadline]
