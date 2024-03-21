@@ -1,7 +1,7 @@
 #import "template.typ": Template, todo
 #let translations = json("translations.json").at("de")
 
-#show: Template.with(bib: "sources.bib",appendix:
+#show: Template.with(bib: arguments("sources.bib", style: "frontiers"), appendix:
  (
     [
       #heading("Wichtiger Anhang",supplement: [#translations.appendix])
@@ -29,7 +29,7 @@
 
 == Unterpunkt
 #todo()
-@ref
+@Effectiv92:online
 
 asdasdas
 #lorem(100)

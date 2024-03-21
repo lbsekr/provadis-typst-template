@@ -170,7 +170,12 @@
   if bib != none {
     set page(numbering: "I")
     counter(page).update(1)
-    bibliography(bib)
+
+    if type(bib) == "string" {
+      bibliography(bib)
+    } else {
+      bibliography(..bib)
+    }
   }
 
   // Appendix
