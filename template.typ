@@ -258,9 +258,9 @@
     } else {
       bibliography(..bib)
     }
+    pagebreak() 
   }
 
-  pagebreak()
 
   // Appendix
   if appendix.len() > 0 {
@@ -271,10 +271,9 @@
     set heading(numbering: "A")
 
     appendix.join()
-
+    pagebreak()
   }
 
-  pagebreak()
 
   // 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅🦅🗽🗽🗽🔫🔫🔫
   if declaration_of_independence {
