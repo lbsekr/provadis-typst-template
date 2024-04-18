@@ -139,11 +139,12 @@
     header: context {
       let section = ""
       let here = here()
+      let selector = heading.where(level: 1, supplement: [#translations.kapitel])
       let before = query(
-        selector(heading.where(level: 1)).before(here, inclusive: false)
+        selector.before(here, inclusive: false)
       )
       let page_sections =  query(
-        selector(heading.where(level: 1)).after(here)
+        selector.after(here)
       ).filter((it) => it.location().page() == here.page())
 
       if before.len() > 0 and page_sections.len() == 0{
@@ -151,7 +152,11 @@
       }else if page_sections.len() > 0 {
         section = page_sections.last().body
       }
-      stack(dir: ttb, [#section #h(1fr) #numbering(here.page-numbering(),counter(page).get().at(0))], [#v(4pt)],[#line(length: 100%)])
+
+      stack(
+        dir: ttb, [#section #h(1fr) #numbering(here.page-numbering(),counter(page).get().at(0))], [#v(4pt)],[#line(length: 100%)]
+      )
+
     }
   )
   pagebreak()
@@ -173,7 +178,7 @@
 
   // Confidental Clause
   if confidental_clause == true {
-    heading(translations.confidentalClaus, outlined: false, numbering: none)  
+    heading(translations.confidentalClaus, outlined: false, numbering: none,supplement: [#translations.kapitel])  
     v(1em)
     text(lang: "de", translations.confidentalClausText)
     v(5em)
@@ -188,16 +193,19 @@
   // Table of Figures
   locate(loc => {
       if counter(figure).final(loc).at(0) > 0 {
-        outline(
-          title:  heading(
-            translations.abbildungsverzeichnis,
+        context {
+          show outline: set heading(
             outlined: true,
             supplement:  [#translations.kapitel]
-          ),
-          depth: 3,
-          indent: true,
-          target: figure.where(kind: image)
-        )
+          )
+        
+          outline(
+            title: translations.abbildungsverzeichnis,  
+            depth: 3,
+            indent: true,
+            target: figure.where(kind: image)
+          )
+        }
         pagebreak()
       }
   })
@@ -220,11 +228,19 @@
     strong(it)
   }
 
-  outline(
-    depth: 3,
-    indent: true,
-    target: heading.where(supplement: [#translations.kapitel])
-  )
+  context {
+    show outline: set heading(
+      outlined: true,
+      supplement:  [#translations.kapitel]
+    )
+
+    outline(
+      depth: 3,
+      indent: true,
+      target: heading.where(supplement: [#translations.kapitel])
+    )
+  }
+
 
   if appendix.len() > 0 {
     outline(
