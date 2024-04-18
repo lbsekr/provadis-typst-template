@@ -148,7 +148,7 @@
 
       if before.len() > 0 and page_sections.len() == 0{
         section = before.last().body
-      }else {
+      }else if page_sections.len() > 0 {
         section = page_sections.last().body
       }
       stack(dir: ttb, [#section #h(1fr) #numbering(here.page-numbering(),counter(page).get().at(0))], [#v(4pt)],[#line(length: 100%)])
