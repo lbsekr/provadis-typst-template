@@ -13,7 +13,6 @@
     ]
   ),
   confidental_clause: true,
-  page_number_position: top + right
 )
 
 = Einleitung

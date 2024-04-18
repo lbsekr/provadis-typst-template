@@ -38,7 +38,6 @@
   deadline: "15.03.2024",
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   confidental_clause: false,
-  page_number_position: bottom + center,
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -164,7 +163,6 @@
       bottom: 1cm
     ),
     numbering: "I",
-    number-align: page_number_position,    
   )
 
   if confidental_clause == true {
@@ -222,7 +220,7 @@
 
   // Main body
   set par(justify: true, leading: 1.1em)
-  set page(numbering: "1", number-align: page_number_position)
+  set page(numbering: "1")
   set block(spacing: 1.2em)
   set heading(supplement: [#translations.kapitel])
   show heading: it => block(it,below: 1.1em)
