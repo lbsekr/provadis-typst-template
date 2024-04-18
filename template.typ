@@ -198,16 +198,17 @@
           indent: true,
           target: figure.where(kind: image)
         )
+        pagebreak()
       }
   })
 
-  pagebreak()
   // Glossary
-  heading("Abkürzungsverzeichnis",supplement: [#translations.kapitel],  numbering: none, outlined: true, )
-  print-glossary(glossary_entries)
-
-
-  pagebreak()
+  if glossary_entries.len() > 0 {
+    heading("Abkürzungsverzeichnis",supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+    print-glossary(glossary_entries)
+    pagebreak()   
+  }
+  
 
   set block(spacing: .65em)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
