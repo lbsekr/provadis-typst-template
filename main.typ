@@ -11,7 +11,8 @@
       #heading("Weiterer Wichtiger Anhang",supplement: [#translations.appendix]) <ref>
       #lorem(100)
     ]
-  )  
+  ),
+  confidental_clause: true,
 )
 
 = Einleitung
