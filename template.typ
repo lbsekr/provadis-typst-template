@@ -37,6 +37,8 @@
   location: "Berlin",
   deadline: "15.03.2024",
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
+  confidental_clause: false,
+  page_number_position: bottom + center,
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -44,6 +46,17 @@
   set document(author: authors.map(a => a.name), title: title)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
   set heading(numbering: "1.1")
+
+  // -------------
+  //  COVER PAGE
+  // -------------
+  set page(
+    margin: (
+      top: 2cm,
+      right: 2cm,
+      left: 2cm,
+      bottom: 1cm
+    ))
 
   grid(
     columns: (1fr,1fr),
@@ -117,8 +130,55 @@
     ]
   )
   v(.5fr)
+  counter(page).update(0)
+  set page(
+    header: context {
+      let section = ""
+      let here = here()
+      let before = query(
+        selector(heading.where(level: 1)).before(here, inclusive: false)
+      )
+      let page_sections =  query(
+        selector(heading.where(level: 1)).after(here)
+      ).filter((it) => it.location().page() == here.page())
+
+      if before.len() > 0 and page_sections.len() == 0{
+        section = before.last().body
+      }else {
+        section = page_sections.first().body
+      }
+      stack(dir: ttb, [#section #h(1fr) #numbering(here.page-numbering(),counter(page).get().at(0))], [#v(4pt)],[#line(length: 100%)])
+    }
+  )
   pagebreak()
-    
+
+  // -----------------
+  //  PRE-AMBEL STUFF
+  // -----------------
+  set par(justify: true, leading: 1.1em)
+  set page(
+    margin: (
+      top: 2cm,
+      right: 2cm,
+      left: 3.5cm,
+      bottom: 1cm
+    ),
+    numbering: "I",
+    number-align: page_number_position,    
+  )
+
+  if confidental_clause == true {
+    heading(translations.confidentalClaus, outlined: false, numbering: none)  
+    v(1em)
+    text(lang: "de", translations.confidentalClausText)
+    v(5em)
+    line(length: 16em)
+    [#strong(authors.map(author => author.name).join(", "))
+    #linebreak()
+    #location, den #datetime.today().display("[day].[month].[year]")]
+    pagebreak()
+  }
+  
   set block(spacing: .65em)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
 
@@ -155,20 +215,21 @@
       }
   })
 
+  counter(page).update(0)
   pagebreak()
+
+
 
   // Main body
   set par(justify: true, leading: 1.1em)
-  set page(numbering: "1", number-align: center)
+  set page(numbering: "1", number-align: page_number_position)
   set block(spacing: 1.2em)
-  counter(page).update(1)
   set heading(supplement: [#translations.kapitel])
   show heading: it => block(it,below: 1.1em)
   
   body
 
   if bib != none {
-    set page(numbering: "I")
     counter(page).update(1)
 
     if type(bib) == "string" {
@@ -180,7 +241,7 @@
 
   // Appendix
   if appendix.len() > 0 {
-    set page(numbering: "I")
+    // set page(numbering: "I")
     counter(heading).update(0)
     set heading(numbering: none)
     heading(translations.appendix, outlined: false)
@@ -190,10 +251,12 @@
 
   }
 
+  pagebreak()
+
   // 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅🦅🗽🗽🗽🔫🔫🔫
   if declaration_of_independence {
     set heading(numbering: none)
-    set page(numbering: none)
+    set page()
     heading("Eigenständigkeitserklärung", outlined: false)
     text(lang: "de", "Ich versichere hiermit, dass ich die vorliegende Arbeit selbständig verfasst und keine anderen als die angegebenen Quellen benutzt habe. Alle Stellen, die wörtlich oder sinngemäß anderen Quellen entnommen wurden, sind als solche kenntlich gemacht. Die Zeichnungen, Abbildungen und Tabellen in dieser Arbeit sind von mir selbst erstellt oder wurden mit einem entsprechenden Quellennachweis versehen. Diese Arbeit wurde weder in gleicher noch in ähnlicher Form von mir an dieser oder an anderen Hochschulen eingereicht.")
 
