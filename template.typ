@@ -268,8 +268,6 @@
   pagebreak()
 
   if bib != none {
-    counter(page).update(1)
-
     if type(bib) == "string" {
       bibliography(bib)
     } else {
