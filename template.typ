@@ -1,3 +1,5 @@
+#import "@preview/glossarium:0.3.0": print-glossary, make-glossary
+
 #let todo(body: "TODO") = {
   rect(
     fill: yellow,
@@ -38,6 +40,7 @@
   deadline: "15.03.2024",
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   confidental_clause: false,
+  glossary_entries: (),
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -45,6 +48,7 @@
   set document(author: authors.map(a => a.name), title: title)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
   set heading(numbering: "1.1")
+  show: make-glossary
 
   // -------------
   //  COVER PAGE
@@ -120,6 +124,7 @@
     [#translations.endeDerBearbeitungsfrist:],
     [#deadline]
   )
+
  
   v(.5fr)
   // Workaroung um Monate in der ausgewählte Sprache (deutsch,english) anzuzeigen, bis Typst es out-of-the-box unterstüzt
@@ -166,6 +171,7 @@
     number-align: top + right
   )
 
+  // Confidental Clause
   if confidental_clause == true {
     heading(translations.confidentalClaus, outlined: false, numbering: none)  
     v(1em)
@@ -177,7 +183,32 @@
     #location, den #datetime.today().display("[day].[month].[year]")]
     pagebreak()
   }
-  
+
+
+  // Table of Figures
+  locate(loc => {
+      if counter(figure).final(loc).at(0) > 0 {
+        outline(
+          title:  heading(
+            translations.abbildungsverzeichnis,
+            outlined: true,
+            supplement:  [#translations.kapitel]
+          ),
+          depth: 3,
+          indent: true,
+          target: figure.where(kind: image)
+        )
+      }
+  })
+
+  pagebreak()
+  // Glossary
+  heading("Abkürzungsverzeichnis",supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+  print-glossary(glossary_entries)
+
+
+  pagebreak()
+
   set block(spacing: .65em)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
 
@@ -202,17 +233,6 @@
       target: heading.where(supplement: [#translations.appendix]),
     )
   }
-
-  locate(loc => {
-      if counter(figure).final(loc).at(0) > 0 {
-        outline(
-          title: translations.abbildungsverzeichnis,
-          depth: 3,
-          indent: true,
-          target: figure,
-        )
-      }
-  })
 
   counter(page).update(0)
   pagebreak()
@@ -247,7 +267,7 @@
     // set page(numbering: "I")
     counter(heading).update(0)
     set heading(numbering: none)
-    heading(translations.appendix, outlined: false)
+    heading(translations.appendix, outlined: false, )
     set heading(numbering: "A")
 
     appendix.join()
