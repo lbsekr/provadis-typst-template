@@ -1,6 +1,6 @@
 # Provadis Typst Template
 
-Das hier ist ein [Typst](https://typst.app) Template für wissenschaftliche Arbeiten an der *pRoVadIs hOcHscHuLe*. Es orientiert sich an der offiziellen Word Vorlage (aber keine Garantie auf Vollständigkeit).
+Das hier ist ein [Typst](https://typst.app) Template für wissenschaftliche Arbeiten an der Provadis Hochschule. Es orientiert sich an der offiziellen Word Vorlage (aber keine Garantie auf Vollständigkeit).
 
 ## Nutzung
 
@@ -38,4 +38,4 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 ```
 
 ## Weitere praktische Tipps
-... werden hier ergänzt falls wir entwas finden 🫡
+... werden hier ergänzt falls wir etwas finden 🫡
