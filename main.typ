@@ -15,8 +15,11 @@
     ]
   ),
   confidental_clause: true,
-  glossary_entries: (
+  abbreviation_entries: (
     ( key: "oidc", short: "OIDC", long: "Open ID Connect" ),
+  ),
+  glossary_entries: (
+    ( key: "haus", short: "Haus", long: "Besteht aus 4 Wänden und einem Dach" ),
   )
 )
 
@@ -25,6 +28,8 @@
 
 Wenn ich @oidc zum ersten mal erwähne wird es ausgeschrieben. \
 Beim zweiten Mal wird @oidc nur abgekürzt. 
+
+Übrigens gibt es das @haus
 
 #pagebreak()
 

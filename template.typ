@@ -1,5 +1,7 @@
 #import "@preview/glossarium:0.3.0": print-glossary, make-glossary
 
+#show: make-glossary
+
 #let todo(body: "TODO") = {
   rect(
     fill: yellow,
@@ -42,14 +44,24 @@
   confidental_clause: false,
   glossary_entries: (),
   show_glossary: "before_contents", // none, before_contents, after_contents
+  abbreviation_entries: (),
+  show_abbreviations: "before_contents", // none, before_contents, after_contents
   body
   ) = {
   let translations = json("translations.json").at(language)
 
-  let glossary() = {
-    heading(translations.glossar,supplement: [#translations.kapitel],  numbering: none, outlined: true, )
-    print-glossary(glossary_entries)
+  let glossary-page(heading-text, entries) = {
+    heading(heading-text, supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+    print-glossary(entries)
     pagebreak()   
+  }
+
+  let glossary() = {
+    glossary-page(translations.glossar, glossary_entries)
+  }
+
+  let abbreviations() = {
+    glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
   }
 
   set document(author: authors.map(a => a.name), title: title)
@@ -221,7 +233,11 @@
   if show_glossary == "before_contents" {
     glossary()
   }
-  
+
+  // List of abbrevations
+  if show_abbreviations == "before_contents" {
+    abbreviations()
+  }
 
   set block(spacing: .65em)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
@@ -251,6 +267,11 @@
   // Glossary
   if show_glossary == "after_contents" {
     glossary()
+  }
+
+  // List of abbrevations
+  if show_abbreviations == "after_contents" {
+    abbreviations()
   }
 
   if appendix.len() > 0 {

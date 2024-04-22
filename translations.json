@@ -9,7 +9,8 @@
         "zweitgutachter": "Zweitgutachter",
         "endeDerBearbeitungsfrist": "Ende der Bearbeitungsfrist",
         "betreuung": "Betreuung",
-        "glossar": "Abkürzungsverzeichnis",
+        "glossar": "Glossar",
+        "abkuerzungsverzeichnis": "Abkürzungsverzeichnis",
         "meta": {
             "monatZeitPrefix": "im"
         },
@@ -39,6 +40,7 @@
         "endeDerBearbeitungsfrist": "End of the working period",
         "betreuung": "Supervisor",
         "glossar": "Glossary",
+        "abkuerzungsverzeichnis": "List of abbreviations",
         "meta": {
             "monatZeitPrefix": "in"
         },
