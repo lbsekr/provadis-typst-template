@@ -46,6 +46,7 @@
   show_glossary: "before_contents", // none, before_contents, after_contents
   abbreviation_entries: (),
   show_abbreviations: "before_contents", // none, before_contents, after_contents
+  show_table_of_figures: "before_contents", // none, before_contents, after_contents
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -62,6 +63,27 @@
 
   let abbreviations() = {
     glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
+  }
+
+  let table_of_figures() = {
+    locate(loc => {
+      if counter(figure).final(loc).at(0) > 0 {
+        context {
+          show outline: set heading(
+            outlined: true,
+            supplement:  [#translations.kapitel]
+          )
+        
+          outline(
+            title: translations.abbildungsverzeichnis,  
+            depth: 3,
+            indent: true,
+            target: figure.where(kind: image)
+          )
+        }
+        pagebreak()
+      }
+    })
   }
 
   set document(author: authors.map(a => a.name), title: title)
@@ -210,24 +232,9 @@
 
 
   // Table of Figures
-  locate(loc => {
-      if counter(figure).final(loc).at(0) > 0 {
-        context {
-          show outline: set heading(
-            outlined: true,
-            supplement:  [#translations.kapitel]
-          )
-        
-          outline(
-            title: translations.abbildungsverzeichnis,  
-            depth: 3,
-            indent: true,
-            target: figure.where(kind: image)
-          )
-        }
-        pagebreak()
-      }
-  })
+  if show_table_of_figures == "before_contents" {
+    table_of_figures()
+  }
 
   // Glossary
   if show_glossary == "before_contents" {
@@ -263,6 +270,11 @@
   }
 
   pagebreak()
+
+  // Table of Figures
+  if show_table_of_figures == "after_contents" {
+    table_of_figures()
+  }
 
   // Glossary
   if show_glossary == "after_contents" {
