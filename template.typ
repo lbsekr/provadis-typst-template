@@ -43,10 +43,8 @@
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   confidental_clause: false,
   glossary_entries: (),
-  show_glossary: "before_contents", // none, before_contents, after_contents
   abbreviation_entries: (),
-  show_abbreviations: "before_contents", // none, before_contents, after_contents
-  show_table_of_figures: "before_contents", // none, before_contents, after_contents
+  show_lists_after_content: false,
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -58,7 +56,7 @@
 
     heading(heading-text, supplement: [#translations.kapitel],  numbering: none, outlined: true, )
     print-glossary(entries)
-    // pagebreak()   
+    pagebreak()
   }
 
   let glossary() = {
@@ -85,7 +83,7 @@
             target: figure.where(kind: image)
           )
         }
-        // pagebreak()
+        pagebreak()
       }
     })
   }
@@ -234,23 +232,10 @@
     pagebreak()
   }
 
-
-  // Table of Figures
-  if show_table_of_figures == "before_contents" {
+  if show_lists_after_content == false {
     table_of_figures()
-    pagebreak()
-  }
-
-  // Glossary
-  if show_glossary == "before_contents" {
     glossary()
-    pagebreak()
-  }
-
-  // List of abbrevations
-  if show_abbreviations == "before_contents" {
     abbreviations()
-    pagebreak()
   }
 
   set block(spacing: .65em)
@@ -278,39 +263,15 @@
 
   // i cannot put into words how much i hate this
   // but it is necessary due to how counters (not) work
-  if show_table_of_figures != "after_contents"  and show_glossary != "after_contents" and show_abbreviations  != "after_contents" and appendix.len() == 0 {
+  if show_lists_after_content == false and appendix.len() == 0 {
       counter(page).update(0)
-    }
+  }
   pagebreak()
 
-  // Table of Figures
-  if show_table_of_figures == "after_contents" {
+  if show_lists_after_content == true {
     table_of_figures()
-
-    if show_glossary != "after_contents" and show_abbreviations  != "after_contents" and appendix.len() == 0 {
-      counter(page).update(0)
-    }
-    pagebreak()
-  }
-
-  // Glossary
-  if show_glossary == "after_contents" {
     glossary()
-
-    if show_abbreviations  != "after_contents" and appendix.len() == 0 {
-      counter(page).update(0)
-    }
-    pagebreak()
-  }
-
-  // List of abbrevations
-  if show_abbreviations == "after_contents" {
     abbreviations()
-
-    if appendix.len() == 0 {
-      counter(page).update(0)
-    }
-    pagebreak()
   }
 
   if appendix.len() > 0 {
@@ -325,7 +286,6 @@
       indent: true,
       target: heading.where(supplement: [#translations.appendix]),
     )
-
     counter(page).update(0)
     pagebreak()
   }
