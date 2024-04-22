@@ -52,6 +52,10 @@
   let translations = json("translations.json").at(language)
 
   let glossary-page(heading-text, entries) = {
+    if entries.len() == 0 {
+      return
+    }
+
     heading(heading-text, supplement: [#translations.kapitel],  numbering: none, outlined: true, )
     print-glossary(entries)
     pagebreak()   
@@ -293,12 +297,10 @@
       indent: true,
       target: heading.where(supplement: [#translations.appendix]),
     )
+    pagebreak()
   }
 
   counter(page).update(0)
-  pagebreak()
-
-
 
   // Main body
   set par(justify: true, leading: 1.1em)
