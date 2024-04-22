@@ -212,7 +212,7 @@
 
   // Glossary
   if glossary_entries.len() > 0 {
-    heading("Abkürzungsverzeichnis",supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+    heading(translations.glossar,supplement: [#translations.kapitel],  numbering: none, outlined: true, )
     print-glossary(glossary_entries)
     pagebreak()   
   }

@@ -9,6 +9,7 @@
         "zweitgutachter": "Zweitgutachter",
         "endeDerBearbeitungsfrist": "Ende der Bearbeitungsfrist",
         "betreuung": "Betreuung",
+        "glossar": "Abkürzungsverzeichnis",
         "meta": {
             "monatZeitPrefix": "im"
         },
@@ -25,7 +26,7 @@
             "October": "Oktober",
             "November": "November",
             "December": "Dezember"
-        }          
+        }
     },
     "en": {
         "confidentalClaus": "Confidental Clause",
@@ -37,6 +38,7 @@
         "zweitgutachter": "Second appraiser",
         "endeDerBearbeitungsfrist": "End of the working period",
         "betreuung": "Supervisor",
+        "glossar": "Glossary",
         "meta": {
             "monatZeitPrefix": "in"
         },
