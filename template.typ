@@ -41,9 +41,16 @@
   declaration_of_independence: true, // 🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅
   confidental_clause: false,
   glossary_entries: (),
+  show_glossary: "before_contents", // none, before_contents, after_contents
   body
   ) = {
   let translations = json("translations.json").at(language)
+
+  let glossary() = {
+    heading(translations.glossar,supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+    print-glossary(glossary_entries)
+    pagebreak()   
+  }
 
   set document(author: authors.map(a => a.name), title: title)
   set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
@@ -211,10 +218,8 @@
   })
 
   // Glossary
-  if glossary_entries.len() > 0 {
-    heading(translations.glossar,supplement: [#translations.kapitel],  numbering: none, outlined: true, )
-    print-glossary(glossary_entries)
-    pagebreak()   
+  if show_glossary == "before_contents" {
+    glossary()
   }
   
 
@@ -241,6 +246,12 @@
     )
   }
 
+  pagebreak()
+
+  // Glossary
+  if show_glossary == "after_contents" {
+    glossary()
+  }
 
   if appendix.len() > 0 {
     outline(
