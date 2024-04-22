@@ -314,6 +314,11 @@
   }
 
   if appendix.len() > 0 {
+    show outline: set heading(
+      outlined: true,
+      supplement:  [#translations.kapitel]
+    )
+
     outline(
       title: translations.appendix,
       depth: 3,
