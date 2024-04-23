@@ -49,14 +49,28 @@
   ) = {
   let translations = json("translations.json").at(language)
 
+  let update_counter_if_necessary() = {
+    context {
+        let first_chapter = query(heading.where(supplement: [#translations.kapitel])).first()
+        if first_chapter.location().page() == here().page() + 1 {
+          counter(page).update(0)
+        }
+      }
+  }
+
+  let update_counter_pagebreak() = {
+    update_counter_if_necessary()
+    pagebreak()
+  }
+
   let glossary-page(heading-text, entries) = {
     if entries.len() == 0 {
       return
     }
 
-    heading(heading-text, supplement: [#translations.kapitel],  numbering: none, outlined: true, )
+    heading(heading-text, supplement: translations.vorwort,  numbering: none, outlined: true, )
     print-glossary(entries)
-    pagebreak()
+    update_counter_pagebreak()
   }
 
   let glossary() = {
@@ -73,7 +87,7 @@
         context {
           show outline: set heading(
             outlined: true,
-            supplement:  [#translations.kapitel]
+            supplement:  [#translations.vorwort]
           )
         
           outline(
@@ -82,8 +96,8 @@
             indent: true,
             target: figure.where(kind: image)
           )
-        }
-        pagebreak()
+        }  
+        update_counter_pagebreak()
       }
     })
   }
@@ -182,7 +196,7 @@
     header: context {
       let section = ""
       let here = here()
-      let selector = heading.where(level: 1, supplement: [#translations.kapitel])
+      let selector = heading.where(level: 1, supplement: [#translations.vorwort]).or(heading.where(level: 1, supplement: [#translations.kapitel]))
       let before = query(
         selector.before(here, inclusive: false)
       )
@@ -221,7 +235,7 @@
 
   // Confidental Clause
   if confidental_clause == true {
-    heading(translations.confidentalClaus, outlined: false, numbering: none,supplement: [#translations.kapitel])  
+    heading(translations.confidentalClaus, outlined: false, numbering: none,supplement: translations.vorwort)  
     v(1em)
     text(lang: "de", translations.confidentalClausText)
     v(5em)
@@ -232,7 +246,7 @@
     pagebreak()
   }
 
-  if show_lists_after_content == false {
+  if not show_lists_after_content {
     table_of_figures()
     glossary()
     abbreviations()
@@ -251,33 +265,21 @@
   context {
     show outline: set heading(
       outlined: true,
-      supplement:  [#translations.kapitel]
+      supplement: translations.vorwort
     )
 
     outline(
       depth: 3,
       indent: true,
       target: heading.where(supplement: [#translations.kapitel])
+      .or(heading.where(supplement: [#translations.vorwort]))
     )
   }
-
-  // i cannot put into words how much i hate this
-  // but it is necessary due to how counters (not) work
-  if show_lists_after_content == false and appendix.len() == 0 {
-      counter(page).update(0)
-  }
-  pagebreak()
-
-  if show_lists_after_content == true {
-    table_of_figures()
-    glossary()
-    abbreviations()
-  }
-
+  
   if appendix.len() > 0 {
     show outline: set heading(
       outlined: true,
-      supplement:  [#translations.kapitel]
+      supplement: translations.vorwort
     )
 
     outline(
@@ -286,9 +288,16 @@
       indent: true,
       target: heading.where(supplement: [#translations.appendix]),
     )
-    counter(page).update(0)
-    pagebreak()
   }
+
+  update_counter_pagebreak()
+
+  if show_lists_after_content {
+    table_of_figures()
+    glossary()
+    abbreviations()
+  }
+
 
   // Main body
   set par(justify: true, leading: 1.1em)
