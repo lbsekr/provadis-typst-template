@@ -50,19 +50,6 @@
   ) = {
   let translations = json("translations.json").at(language)
 
-  let update_counter_if_necessary() = {
-    context {
-        let first_chapter = query(heading.where(supplement: [#translations.kapitel])).first()
-        if first_chapter.location().page() == here().page() + 1 {
-          counter(page).update(0)
-        }
-      }
-  }
-
-  let update_counter_pagebreak() = {
-    update_counter_if_necessary()
-    pagebreak()
-  }
 
   let glossary-page(heading-text, entries) = {
     if entries.len() == 0 {
@@ -71,7 +58,7 @@
 
     heading(heading-text, supplement: translations.vorwort,  numbering: none, outlined: true, )
     print-glossary(entries)
-    update_counter_pagebreak()
+    pagebreak()
   }
 
   let glossary() = {
@@ -98,7 +85,7 @@
             target: figure.where(kind: image)
           )
         }  
-        update_counter_pagebreak()
+        pagebreak()
       }
     })
   }
@@ -197,10 +184,13 @@
     header: context {
       let section = ""
       let here = here()
-      let selector = heading.where(level: 1, supplement: [#translations.vorwort]).or(heading.where(level: 1, supplement: [#translations.kapitel]))
+      let selector = heading.where(level: 1, supplement: [#translations.vorwort])
+        .or(heading.where(level: 1, supplement: [#translations.kapitel]))
+     
       let before = query(
         selector.before(here, inclusive: false)
       )
+     
       let page_sections =  query(
         selector.after(here)
       ).filter((it) => it.location().page() == here.page())
@@ -208,7 +198,7 @@
       if before.len() > 0 and page_sections.len() == 0{
         section = before.last().body
       }else if page_sections.len() > 0 {
-        section = page_sections.last().body
+        section = page_sections.first().body
       }
 
       stack(
@@ -264,6 +254,12 @@
   }
 
   context {
+
+    show outline: set heading(
+      outlined: false,
+      supplement: translations.vorwort
+    )
+
     outline(
       depth: 3,
       indent: true,
@@ -286,7 +282,6 @@
     )
   }
 
-  update_counter_pagebreak()
 
   if show_lists_after_content {
     table_of_figures()
