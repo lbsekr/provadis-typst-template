@@ -45,6 +45,7 @@
   glossary_entries: (),
   abbreviation_entries: (),
   show_lists_after_content: false,
+  ai_entries: (),
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -318,6 +319,25 @@
     }
     pagebreak() 
   }
+
+  // AI
+  set heading(numbering: none)
+  set page()
+  heading(translations.ki.verzeichnis)
+  if ai_entries.len() == 0 {
+    [#translations.ki.unbenutzt]
+  } else {
+    table(
+      columns: (auto, auto, auto),
+      align: horizon,
+      table.header(
+        [*#translations.ki.system*], [*#translations.ki.prompt*], [*#translations.ki.verwendung*],
+      ),
+      ..ai_entries.flatten()
+    )
+
+  }
+  pagebreak()
 
 
   // Appendix

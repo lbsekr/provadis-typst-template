@@ -12,6 +12,13 @@
         "betreuung": "Betreuung",
         "glossar": "Glossar",
         "abkuerzungsverzeichnis": "Abkürzungsverzeichnis",
+        "ki": {
+            "verzeichnis": "KI-Verzeichnis",
+            "unbenutzt": "Es wurde keine KI verwendet.",
+            "system": "System",
+            "prompt": "Prompt",
+            "verwendung": "Verwendung"
+        },
         "meta": {
             "monatZeitPrefix": "im"
         },
@@ -43,6 +50,13 @@
         "betreuung": "Supervisor",
         "glossar": "Glossary",
         "abkuerzungsverzeichnis": "List of abbreviations",
+        "ki": {
+            "verzeichnis": "AI usage",
+            "unbenutzt": "No AI has been used.",
+            "system": "System",
+            "prompt": "Prompt",
+            "verwendung": "Use"
+        },
         "meta": {
             "monatZeitPrefix": "in"
         },

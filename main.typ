@@ -20,6 +20,10 @@
   ),
   glossary_entries: (
     ( key: "haus", short: "Haus", long: "Besteht aus 4 Wänden und einem Dach" ),
+  ),
+  ai_entries: (
+    ( "OpenAI ChatGPT", "Schreib meine Bachelorarbeit", "Bachelorarbeit schreiben lassen und lieber Fortnite zocken" ),
+    ( "Google Gemini", "Gib mir Motivationstipps", "Die Nerven beibehalten" )
   )
 )
 
