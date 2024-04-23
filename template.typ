@@ -264,11 +264,6 @@
   }
 
   context {
-    show outline: set heading(
-      outlined: true,
-      supplement: translations.vorwort
-    )
-
     outline(
       depth: 3,
       indent: true,
