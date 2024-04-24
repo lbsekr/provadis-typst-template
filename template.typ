@@ -345,11 +345,11 @@
 
         }
 
-        pagebreak()
 
         // Appendix
         if appendix.len() > 0 {
           context {
+           pagebreak()
             heading(translations.appendix, outlined: false)
             set heading(numbering: "A")
             counter(heading).update(0)
