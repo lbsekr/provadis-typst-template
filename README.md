@@ -39,3 +39,6 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 
 ## Weitere praktische Tipps
 ... werden hier ergänzt falls wir etwas finden 🫡
+
+## Known Issuses 
+Am Ende des Dokuments wird eine leere Seite angehängt. Das ist ein bekannter [Fehler](https://github.com/typst/typst/issues/2326#issuecomment-2019132332) im Typst-Compiler. Es muss auf einen Fix gewartet werden.
