@@ -38,6 +38,9 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 ```
 
 ## Weitere praktische Tipps
+
+- Praktisches Package für TODO-Notizen oder allgemein Anmerkungen am Seitenrand: [package/drafting](https://typst.app/universe/package/drafting)
+
 ... werden hier ergänzt falls wir etwas finden 🫡
 
 ## Known Issuses 
