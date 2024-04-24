@@ -14,7 +14,7 @@
       #lorem(100)
     ]
   ),
-  show_lists_after_content: true,
+  show_lists_after_content: false,
   confidental_clause: true,
   abbreviation_entries: (
     ( key: "oidc", short: "OIDC", long: "Open ID Connect" ),

@@ -245,7 +245,6 @@
       abbreviations()
     }
     
-
     set block(spacing: .65em)
     set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
 
@@ -263,8 +262,8 @@
     ) 
 
     context {
-       if abbreviation_entries.len() != 0  and not show_lists_after_content{
-           pagebreak()
+      if abbreviation_entries.len() != 0 and not show_lists_after_content {
+        pagebreak()
       }
       outline(
         depth: 3,
@@ -349,7 +348,7 @@
         // Appendix
         if appendix.len() > 0 {
           context {
-           pagebreak()
+            pagebreak()
             heading(translations.appendix, outlined: false)
             set heading(numbering: "A")
             counter(heading).update(0)
@@ -366,7 +365,7 @@
           set heading(numbering: none)
           heading("Ehrenwörtliche Erklärung", outlined: false)
           text(lang: "de", 
-          "Hiermit bestätige ich, dass ich die vorliegende Arbeit persönlich und selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe. Alle Stel-len, die wörtlich oder sinngemäß anderen Quellen entnommen wurden, sind als solche kennt-lich gemacht. Die Zeichnungen, Abbildungen und Tabellen in dieser Arbeit sind von mir selbst erstellt oder wurden mit einem entsprechenden Quellennachweis versehen. Diese Arbeit wurde weder in gleicher noch in ähnlicher Form von mir an anderen Hochschulen zur Erlangung eines akademischen Abschlusses eingereicht."
+            "Hiermit bestätige ich, dass ich die vorliegende Arbeit persönlich und selbständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel verwendet habe. Alle Stel-len, die wörtlich oder sinngemäß anderen Quellen entnommen wurden, sind als solche kennt-lich gemacht. Die Zeichnungen, Abbildungen und Tabellen in dieser Arbeit sind von mir selbst erstellt oder wurden mit einem entsprechenden Quellennachweis versehen. Diese Arbeit wurde weder in gleicher noch in ähnlicher Form von mir an anderen Hochschulen zur Erlangung eines akademischen Abschlusses eingereicht."
           )
 
           v(8%)
