@@ -2,7 +2,7 @@ name: Build and publish Typst document
 on: push
 
 jobs:
-  build_typst_documents:
+  build_typst_document:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -13,14 +13,33 @@ jobs:
         uses: lvignoli/typst-action@main
         with:
           source_file: main.typ
+      - name: Set commit based variables 
+        shell: bash
+        if: github.ref_type != 'tag'
+        run: |
+          echo "FINAL_FILE_NAME=${PREFIX}$(git rev-parse --short "$GITHUB_SHA").pdf" >> "$GITHUB_ENV"
+        env:
+            PREFIX: ${{ vars.FILE_NAME_PREFIX || 'main_' }}
+      - name: Set tag based variables 
+        shell: bash
+        if: github.ref_type == 'tag'
+        run: |
+          echo "FINAL_FILE_NAME=${PREFIX}${{ github.ref_name }}.pdf" >> "$GITHUB_ENV"
+        env:
+            PREFIX: ${{ vars.FILE_NAME_PREFIX || 'main_' }}
+      - name: Move output file
+        shell: bash
+        run: |
+          mv main.pdf ${{ env.FINAL_FILE_NAME }}
       - name: Upload as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: main.pdf
-          path: main.pdf
-      # - name: Upload to Discord
-      #   uses: sinshutu/upload-to-discord@master
-      #   env:
-      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      #   with:
-      #     args: main.pdf
+          name: ${{ env.FINAL_FILE_NAME }}
+          path: ${{ env.FINAL_FILE_NAME }}
+      - name: Upload to Discord
+        uses: sinshutu/upload-to-discord@master
+        if: vars.DISCORD_WEBHOOK
+        env:
+          DISCORD_WEBHOOK: ${{ vars.DISCORD_WEBHOOK }}
+        with:
+          args: ${{ env.FINAL_FILE_NAME }}

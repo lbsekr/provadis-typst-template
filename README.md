@@ -45,6 +45,18 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 )
 ```
 
+### 4. Optional: Konfiguriere die Github Action
+In diesem Repository befindet sich eine [GitHub Action](./.github/workflows/main.yml), die du zum Bauen deines Dokumentes verwenden kannst. Mit dieser GitHub Action wird dein Dokument bei jedem Push (Commit oder Tag) gebaut und als Artefakt hochgeladen. Optional kannst du dieses auch über eine Discord Webhook in einen Discord Channel schicken lassen.
+
+Kopiere hierfür einfach den .github Ordner dieses Projekts in dein Eigenes.
+
+Du kannst zusätzlich folgende Variablen als Action Variablen konfigurieren.
+
+| Variable         | Default | Beschreibung                                           |
+|------------------|---------|--------------------------------------------------------|
+| FILE_NAME_PREFIX | main_   | Präfix der vor der Versionsinfo angehangen werden soll |
+| DISCORD_WEBHOOK  |         | Discord Webhook URL zum Hochladen des PDFs             |
+
 ## Weitere praktische Tipps
 
 - Praktisches Package für TODO-Notizen oder allgemein Anmerkungen am Seitenrand: [package/drafting](https://typst.app/universe/package/drafting)
