@@ -362,6 +362,7 @@
         // 🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🦅🦅🦅🦅🗽🗽🗽🔫🔫🔫
         if declaration_of_independence {
           pagebreak()
+          set page(header: none, numbering: none)
           set heading(numbering: none)
           heading("Ehrenwörtliche Erklärung", outlined: false)
           text(lang: "de", 
