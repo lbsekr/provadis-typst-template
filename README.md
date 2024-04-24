@@ -14,7 +14,7 @@ thesis/
 ```
 ### 2. Binde das Template in deine `main.typ` Datei ein
 ```{typst}
-#import "template.typ": Template, todo
+#import "template.typ": Template
 ```
 ### 3. Initialisiere das Template mit deinen eigenen Werten
 Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei nach. Hier folgt ein Beispiel:

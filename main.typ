@@ -1,4 +1,4 @@
-#import "template.typ": Template, todo
+#import "template.typ": Template
 #import "@preview/glossarium:0.3.0": gls
 #let translations = json("translations.json").at("de")
 
@@ -49,13 +49,10 @@ Beim zweiten Mal wird @oidc nur abgekürzt.
 #pagebreak()
 
 == Unterpunkt
-#todo()
 @Effectiv92:online
-
-asdasdas
 #lorem(100)
 === Unter-Unterpunkt
-#todo(body: "Hier ist noch was zu tun!")
+#lorem(100)
 === Unter-Unterpunkt
 #pagebreak()
 

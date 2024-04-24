@@ -2,13 +2,6 @@
 
 #show: make-glossary
 
-#let todo(body: "TODO") = {
-  rect(
-    fill: yellow,
-    radius: 1pt,
-    body
-  )
-}
 
 #let Template(
   language: "de",
