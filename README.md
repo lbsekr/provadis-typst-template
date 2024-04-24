@@ -4,6 +4,8 @@ Das hier ist ein [Typst](https://typst.app) Template für wissenschaftliche Arbe
 
 ## Nutzung
 
+Verwende nur getaggte [Versionen](https://github.com/lbsekr/provadis-typst-template/tags). Ungetaggte Versionen sind als Entwicklungsversionen anzusehen und möglicherweise nicht benutzbar.
+
 ### 1. Binde das Template ein
 
 Entweder über einen Download oder als Git-Submodule, falls du ohnehin Git nutzt um deine wissenschaftliche Arbeit zu verwalten (`git submodule add https://github.com/lbsekr/provadis-typst-template.git`)
@@ -12,6 +14,12 @@ thesis/
 ├─ provadis-typst-template/ <- this repository
 ├─ main.typ
 ```
+Wenn du Git verwendest, solltest du noch eine getaggte Version auschecken.
+```
+cd provadis-typst-template
+git checkout <tag_or_commit_sha>
+```
+
 ### 2. Binde das Template in deine `main.typ` Datei ein
 ```{typst}
 #import "template.typ": Template
