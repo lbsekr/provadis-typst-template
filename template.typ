@@ -53,12 +53,13 @@
   // Main Context
   context {
     let glossary-page(heading-text, entries) = {
-    if entries.len() == 0 {
-      return
-    }
+      if entries.len() == 0 {
+        return
+      }
 
-    heading(heading-text, supplement: translations.vorwort, numbering: none, outlined: true, )
-    print-glossary(entries)
+      pagebreak()
+      heading(heading-text, supplement: translations.vorwort, numbering: none, outlined: true, )
+      print-glossary(entries)
     }
 
     let glossary() = {
@@ -67,12 +68,16 @@
 
     let abbreviations() = {
       glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
+     
     }
 
     let table_of_figures() = {
       locate(loc => {
         if counter(figure).final(loc).at(0) > 0 {
           context {
+            if show_lists_after_content {
+              pagebreak()
+            }
             show outline: set heading(
               outlined: true,
               supplement:  [#translations.vorwort]
@@ -221,26 +226,23 @@
 
     // Confidental Clause
     if confidental_clause == true {
-      heading(translations.confidentalClaus, outlined: false, numbering: none,supplement: translations.vorwort)  
-      v(1em)
-      text(lang: "de", translations.confidentalClausText)
-      v(5em)
-      line(length: 16em)
-      [#strong(authors.map(author => author.name).join(", "))
-      #linebreak()
-      #location, den #datetime.today().display("[day].[month].[year]")]
-      pagebreak()
+      context {
+        heading(translations.confidentalClaus, outlined: false, numbering: none,supplement: translations.vorwort)  
+        v(1em)
+        text(lang: "de", translations.confidentalClausText)
+        v(5em)
+        line(length: 16em)
+        [#strong(authors.map(author => author.name).join(", "))
+        #linebreak()
+        #location, den #datetime.today().display("[day].[month].[year]")]
+        pagebreak()
+      }
     }
 
     if not show_lists_after_content {
-      context {
-        table_of_figures()
-        pagebreak()
-        glossary()
-        pagebreak()
-        abbreviations()
-        pagebreak()
-      }
+      table_of_figures()
+      glossary()
+      abbreviations()
     }
     
 
@@ -259,12 +261,19 @@
       outlined: false,
       supplement: translations.vorwort
     ) 
-    outline(
-      depth: 3,
-      indent: true,
-      target: heading.where(supplement: [#translations.kapitel])
-      .or(heading.where(supplement: [#translations.vorwort]))
-    )
+
+    context {
+       if abbreviation_entries.len() != 0  and not show_lists_after_content{
+           pagebreak()
+      }
+      outline(
+        depth: 3,
+        indent: true,
+        target: heading.where(supplement: [#translations.kapitel])
+        .or(heading.where(supplement: [#translations.vorwort]))
+      )
+    }
+
     
     if appendix.len() > 0 {
       show outline: set heading(
@@ -282,21 +291,17 @@
 
 
     if show_lists_after_content {
-      context {
-        pagebreak()
         table_of_figures()
-        pagebreak()
         glossary()
-        pagebreak()
         abbreviations()
-      }
     }
+
     
     // Main Body Context
     context {
+      // Main body
       counter(page).update(0)
       set page(numbering: "1")
-      // Main body
       set par(justify: true, leading: 1.1em)
       set heading(supplement: [#translations.kapitel])
       set block(spacing: 1.2em)
