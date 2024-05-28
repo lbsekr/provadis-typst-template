@@ -5,7 +5,9 @@
 
 #let Template(
   language: "de",
-  title: "Platzhaltertitel für eine Bachelorarbeit: Eine Vorläufige Betrachtung",
+  title: [Textvorlage für wissenschaftliche Arbeiten
+
+Titel und Untertitel der Arbeit],
   authors: (
     (
       name: "Max Julian Mustermann", 
@@ -14,17 +16,18 @@
       matrikel: "XXXX"
     ),
   ),
-  logo: image("img/t-systems.png", width: 120pt),
+  logo: image("img/t-systems.png", width: 180pt, height: 2.06cm, fit: "contain"),
   abstract: lorem(100),
-  document-type: "Bachelorarbeit",
+  document-type: "Wiss. Kurzbericht / WAB / Bachelorarbeit / Masterarbeit",
   reason: [
-    zur Erlangung des akademischen Grades \
-    ’Bachelor of Science’  B.Sc.\ 
-    im Studiengang Informatik \ \
-    vorgelegt dem Fachbereich \
-    Informatik und Wirtschaftsinformatik \ der \
+    Zur Veranstaltung… / zur Erlangung des akademischen Grades \
+    ’Bachelor of Science’ B.Sc. / ’Master of Science’ M.Sc. \
+    im Studiengang ’XXX’
+  ],
+  submitted_to: [
+    vorgelegt dem Fachbereich Informatik und Wirtschaftsinformatik der \
     Provadis School of International Management and Technology \
-    von
+    von \
   ],
   first_appraiser: "Prof. Müller",
   second_appraiser: "Dr. Kunze",
@@ -61,7 +64,6 @@
 
     let abbreviations() = {
       glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
-     
     }
 
     let table_of_figures() = {
@@ -104,27 +106,40 @@
       )
     )
 
-    grid(
-      columns: (1fr,1fr),
-      align(left ,image("img/provadis.png", width: 120pt)),
-      align(right,logo),
+    place(
+      top,
+      float: false,
+      clearance: 0em,
+        grid(
+        columns: (1fr,1fr),
+        align(left ,image("img/provadis.png", height: 2.06cm)),
+        align(right,logo),
+      )
     )
 
-    v(2em)
+    v(11em)
 
-    align(center, text(1.25em, weight: 600, document-type)) 
+    align(center, text(1.1em,document-type)) 
 
-    v(2em)
+    v(1cm)
 
+    set par(leading: 1em)
     align(center,
-      text(1.5em, title)
+      text(14pt, weight: 600, title)
     )
 
-    v(1em)
+    v(2.5cm)
 
-    set par(justify: true, leading: 1em)
+    set par(justify: true, leading: 1.5em)
     align(center, 
-      text(1.25em, reason),
+      text(1.1em, reason),
+    ) 
+
+    v(1cm)
+    set par(justify: true, leading: 1em)
+
+    align(center, 
+      text(1.1em, submitted_to),
     ) 
     
     v(2em)
@@ -133,7 +148,7 @@
       center,
       grid(
         ..authors.map(author => align(center)[
-          *#author.name* 
+          #author.name 
 
           #author.matrikel 
 
@@ -148,36 +163,43 @@
       )
     )
 
-    v(2.4fr)
-    grid(
-      columns: (auto, auto),
-      rows: (auto, auto),
-      row-gutter: 15pt,
-      column-gutter: 15pt,
-      [#translations.erstgutachter:],
-      [#first_appraiser],
-      ..({if second_appraiser != none {
-              (
-                [#translations.zweitgutachter:],
-                [#second_appraiser]
-              )
-        }}
-      ),    [#translations.betreuung:],
-      [#supervisor],
-      [#translations.endeDerBearbeitungsfrist:],
-      [#deadline]
+    place(
+      bottom + left,
+      grid(
+        columns: (auto, auto),
+        rows: (auto, auto),
+        row-gutter: 15pt,
+        column-gutter: 15pt,
+        [#translations.erstgutachter:],
+        [#first_appraiser],
+        ..({if second_appraiser != none {
+                (
+                  [#translations.zweitgutachter:],
+                  [#second_appraiser]
+                )
+          }}
+        ),    [#translations.betreuung:],
+        [#supervisor],
+        [#translations.endeDerBearbeitungsfrist:],
+        [#deadline],
+        v(1em)
+      )
     )
+    
+    
 
 
-    v(.5fr)
+  
     // Workaroung um Monate in der ausgewählte Sprache (deutsch,english) anzuzeigen, bis Typst es out-of-the-box unterstüzt
-    text(
-      [
-        Frankfurt am Main, #translations.meta.monatZeitPrefix #translations.monate.at(datetime.today().display("[month repr:long]")) #datetime.today().display("[year]")
-      ]
-    )
-    v(.5fr)
+    // text(
+    //   [
+    //     Frankfurt am Main, #translations.meta.monatZeitPrefix #translations.monate.at(datetime.today().display("[month repr:long]")) #datetime.today().display("[year]")
+    //   ]
+    // )
+    // v(.5fr)
     counter(page).update(0)
+
+
     // -----------------
     //  PRE-AMBEL STUFF
     // -----------------
