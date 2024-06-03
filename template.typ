@@ -208,10 +208,10 @@
         )
       },
       margin: (
-        top: 2cm,
+        top: 3cm,
         right: 2cm,
-        left: 3.5cm,
-        bottom: 1cm
+        left: 3cm,
+        bottom: 2cm
       ),
       numbering: "i",
       number-align: top + right
