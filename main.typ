@@ -47,7 +47,17 @@ Beim zweiten Mal wird @oidc nur abgekürzt.
   caption: [A curious figure.],
 ) <glacier>
 #pagebreak()
-
+#figure(
+  [```java
+    class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!"); 
+    }
+  ```],
+  kind: "code",
+  supplement: "Codebeispiel",
+  caption: [java hello world.],
+) <glacier>
 == Unterpunkt
 @Effectiv92:online
 #lorem(100)
