@@ -8,6 +8,7 @@
     body,
     kind: "code",
     caption: caption,
+    supplement: supplement
   )
 }
 
@@ -50,7 +51,6 @@
   body
   ) = {
   let translations = json("translations.json").at(language)
-  show code: figure()
 
   // Main Context
   context {
