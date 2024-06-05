@@ -61,7 +61,20 @@
 
     let abbreviations() = {
       glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
-     
+    }
+
+    let table_of_code()  = {
+      locate(loc => {
+        if counter(figure).final(loc).at(0) > 0 {
+          pagebreak()
+          outline(
+            title: translations.codeverzeichnis,  
+            depth: 3,
+            indent: true,
+            target: figure.where(kind: "code")
+          )
+        }
+      })
     }
 
     let table_of_figures() = {
@@ -234,6 +247,7 @@
 
     if not show_lists_after_content {
       table_of_figures()
+      table_of_code()
       glossary()
       abbreviations()
     }
@@ -284,6 +298,7 @@
 
     if show_lists_after_content {
         table_of_figures()
+        table_of_code()
         glossary()
         abbreviations()
     }
