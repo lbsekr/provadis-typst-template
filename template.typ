@@ -3,6 +3,14 @@
 #show: make-glossary
 
 
+#let code(body,caption: "",supplement: "") = {
+  figure(
+    body,
+    kind: "code",
+    caption: caption,
+  )
+}
+
 #let Template(
   language: "de",
   title: "Platzhaltertitel für eine Bachelorarbeit: Eine Vorläufige Betrachtung",
@@ -42,6 +50,7 @@
   body
   ) = {
   let translations = json("translations.json").at(language)
+  show code: figure()
 
   // Main Context
   context {
@@ -68,7 +77,7 @@
         if counter(figure).final(loc).at(0) > 0 {
           pagebreak()
           outline(
-            title: translations.codeverzeichnis,  
+            title: translations.codeausschnittverzeichnis,  
             depth: 3,
             indent: true,
             target: figure.where(kind: "code")
