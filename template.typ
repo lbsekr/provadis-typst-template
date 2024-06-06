@@ -3,6 +3,15 @@
 #show: make-glossary
 
 
+#let code(body,caption: "",supplement: "") = {
+  figure(
+    body,
+    kind: "code",
+    caption: caption,
+    supplement: supplement
+  )
+}
+
 #let Template(
   language: "de",
   title: [Textvorlage für wissenschaftliche Arbeiten
@@ -71,7 +80,7 @@ Titel und Untertitel der Arbeit],
         if counter(figure).final(loc).at(0) > 0 {
           pagebreak()
           outline(
-            title: translations.codeverzeichnis,  
+            title: translations.codeausschnittverzeichnis,  
             depth: 3,
             indent: true,
             target: figure.where(kind: "code")
