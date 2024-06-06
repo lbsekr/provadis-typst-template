@@ -1,4 +1,4 @@
-#import "template.typ": Template
+#import "template.typ": Template, code
 #import "@preview/glossarium:0.3.0": gls
 #let translations = json("translations.json").at("de")
 
@@ -47,7 +47,16 @@ Beim zweiten Mal wird @oidc nur abgekürzt.
   caption: [A curious figure.],
 ) <glacier>
 #pagebreak()
-
+#code(
+  ```java
+    class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!"); 
+    }
+  ```,
+  supplement: translations.codeausschnitt,
+  caption: [java hello world.],
+) <glacier>
 == Unterpunkt
 @Effectiv92:online
 #lorem(100)
