@@ -27,6 +27,7 @@ Titel und Untertitel der Arbeit],
   ),
   logo: image("img/t-systems.png", width: 180pt, height: 2.06cm, fit: "contain"),
   abstract: lorem(100),
+  preface: lorem(100),
   document-type: "Wiss. Kurzbericht / WAB / Bachelorarbeit / Masterarbeit",
   reason: [
     Zur Veranstaltung… / zur Erlangung des akademischen Grades \
@@ -282,6 +283,14 @@ Titel und Untertitel der Arbeit],
       v(1em)
 
       abstract
+      pagebreak()
+    }
+
+    if type(preface) == "content" or type(preface) == "string" {
+      heading(translations.vorwort, outlined: false, numbering: none,supplement: translations.vorwort)
+      v(1em)
+
+      preface
       pagebreak()
     }
 
