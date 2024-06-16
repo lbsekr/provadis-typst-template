@@ -277,6 +277,14 @@ Titel und Untertitel der Arbeit],
       }
     }
 
+    if type(abstract) == "content" or type(abstract) == "string" {
+      heading(translations.abstract, outlined: false, numbering: none,supplement: translations.vorwort)
+      v(1em)
+
+      abstract
+      pagebreak()
+    }
+
     if not show_lists_after_content {
       table_of_figures()
       table_of_code()

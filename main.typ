@@ -25,7 +25,8 @@
   ai_entries: (
     ( "OpenAI ChatGPT", "Schreib meine Bachelorarbeit", "Bachelorarbeit schreiben lassen und lieber Fortnite zocken" ),
     ( "Google Gemini", "Gib mir Motivationstipps", "Die Nerven beibehalten" )
-  )
+  ),
+  abstract: [Im Nachfolgenden Text lesen Sie eine sehr gute Arbeit über ein sehr gutes Thema welches ich sehr gut bearbeitet habe.]
 )
 
 = Einleitung
