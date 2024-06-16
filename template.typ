@@ -28,6 +28,7 @@ Titel und Untertitel der Arbeit],
   logo: image("img/t-systems.png", width: 180pt, height: 2.06cm, fit: "contain"),
   abstract: lorem(100),
   preface: lorem(100),
+  acknowledgement: "Für meine Brudis",
   document-type: "Wiss. Kurzbericht / WAB / Bachelorarbeit / Masterarbeit",
   reason: [
     Zur Veranstaltung… / zur Erlangung des akademischen Grades \
@@ -210,7 +211,6 @@ Titel und Untertitel der Arbeit],
       )
     )
     
-    
 
 
   
@@ -221,6 +221,13 @@ Titel und Untertitel der Arbeit],
     //   ]
     // )
     // v(.5fr)
+
+    pagebreak()
+    place(
+      center + horizon,
+      text(acknowledgement, style: "italic", size: 14pt)
+    )
+
     counter(page).update(0)
 
 
