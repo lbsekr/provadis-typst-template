@@ -2,7 +2,6 @@
 
 #show: make-glossary
 
-
 #let code(body,caption: "",supplement: "") = {
   figure(
     body,
@@ -222,11 +221,13 @@ Titel und Untertitel der Arbeit],
     // )
     // v(.5fr)
 
-    pagebreak()
-    place(
-      center + horizon,
-      text(acknowledgement, style: "italic", size: 14pt)
-    )
+    if type(acknowledgement) == "content" or type(acknowledgement) == "string" {
+      pagebreak()
+      place(
+        center + horizon,
+        text(acknowledgement, style: "italic", size: 14pt)
+      )
+    }
 
     counter(page).update(0)
 
