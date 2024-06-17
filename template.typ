@@ -2,7 +2,6 @@
 
 #show: make-glossary
 
-
 #let code(body,caption: "",supplement: "") = {
   figure(
     body,
@@ -27,6 +26,8 @@ Titel und Untertitel der Arbeit],
   ),
   logo: image("img/t-systems.png", width: 180pt, height: 2.06cm, fit: "contain"),
   abstract: lorem(100),
+  preface: lorem(100),
+  acknowledgement: "Für meine Brudis",
   document-type: "Wiss. Kurzbericht / WAB / Bachelorarbeit / Masterarbeit",
   reason: [
     Zur Veranstaltung… / zur Erlangung des akademischen Grades \
@@ -209,7 +210,6 @@ Titel und Untertitel der Arbeit],
       )
     )
     
-    
 
 
   
@@ -220,6 +220,15 @@ Titel und Untertitel der Arbeit],
     //   ]
     // )
     // v(.5fr)
+
+    if type(acknowledgement) == "content" or type(acknowledgement) == "string" {
+      pagebreak()
+      place(
+        center + horizon,
+        text(acknowledgement, style: "italic", size: 14pt)
+      )
+    }
+
     counter(page).update(0)
 
 
@@ -275,6 +284,22 @@ Titel und Untertitel der Arbeit],
         #location, den #datetime.today().display("[day].[month].[year]")]
         pagebreak()
       }
+    }
+
+    if type(abstract) == "content" or type(abstract) == "string" {
+      heading(translations.abstract, outlined: false, numbering: none,supplement: translations.vorwort)
+      v(1em)
+
+      abstract
+      pagebreak()
+    }
+
+    if type(preface) == "content" or type(preface) == "string" {
+      heading(translations.vorwort, outlined: false, numbering: none,supplement: translations.vorwort)
+      v(1em)
+
+      preface
+      pagebreak()
     }
 
     if not show_lists_after_content {
