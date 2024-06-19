@@ -2,10 +2,12 @@
 
 #show: make-glossary
 
+#let code_identifier =  "code"
+
 #let code(body,caption: "",supplement: "") = {
   figure(
     body,
-    kind: "code",
+    kind: code_identifier,
     caption: caption,
     supplement: supplement
   )
@@ -78,13 +80,13 @@ Titel und Untertitel der Arbeit],
 
     let table_of_code()  = {
       locate(loc => {
-        if counter(figure).final(loc).at(0) > 0 {
+        if counter(figure.where(kind: code_identifier)).final(loc).at(0) > 0 {
           pagebreak()
           outline(
             title: translations.codeausschnittverzeichnis,  
             depth: 3,
             indent: true,
-            target: figure.where(kind: "code")
+            target: figure.where(kind: code_identifier)
           )
         }
       })
