@@ -45,6 +45,37 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 )
 ```
 
+**Liste von Argumenten**
+
+
+| Argument                     | Typ                | Standardwert                         | Verwendungszweck                                                                          |
+|------------------------------|--------------------|--------------------------------------|-------------------------------------------------------------------------------------------|
+| language                     | String             | "de"                                 | Definiert die Sprache des Dokuments. Momentan nur Deutsch und English unterstützt.                                                 |
+| title                        | Liste von Strings  | ["Textvorlage für wissenschaftliche Arbeiten\n\nTitel und Untertitel der Arbeit"]       | Gibt den Titel und Untertitel des Dokuments an.                                            |
+| authors                      | Tupel von Tupeln (  name:  string \| content, email: string  \| content, postal: string \| content, matrikel:  string \| content),   | [(name: "Max Julian Mustermann", email: "max.mustermann@stud-provadis-hochschule.de", postal: "Hauptstraße 10, D-10341 Hauptstadt",matrikel: "XXXX")] | Enthält Informationen über die Autoren des Dokuments.                                      |
+| logo                         | Bild               | image("img/t-systems.png", width: 180pt, height: 2.06cm, fit: "contain") | 2tes optionales Logo.                |
+| abstract                     | String             | lorem(100)                           | Enthält das Abstract des Dokuments.                                                        |
+| preface                      | String             | lorem(100)                           | Enthält das Vorwort oder die Einleitung des Dokuments.                                      |
+| acknowledgement              | String             | "Für meine Brudis"                   | Danksagung an Personen oder Gruppen für ihre Unterstützung.                                 |
+| document-type                | String             | "Wiss. Kurzbericht / WAB / Bachelorarbeit / Masterarbeit" | Spezifiziert den Typ des Dokuments (z.B. Bachelorarbeit, Masterarbeit).                    |
+| reason                       | Liste von Strings  | Siehe Template                       | Beschreibt den Grund für die Erstellung des Dokuments, z.B. für Erlangung akademische Grade.          |
+| submitted_to                 | Liste von Strings  | Siehe Template                       | Gibt an, wo das Dokument eingereicht wird (z.B. Universitätsabteilung).                    |
+| first_appraiser              | String             | "Prof. Müller"                       | Name des ersten Gutachters oder Prüfers des Dokuments.                                      |
+| second_appraiser             | String             | "Dr. Kunze"                          | Name des zweiten Gutachters oder Prüfers des Dokuments.                                     |
+| supervisor                   | String             | "Dr. Peter"                          | Name des Betreuers oder Beraters, der das Dokument überwacht.                               |
+| bib                          | String oder NoneType| none                                | Gibt den Stil für das Literaturverzeichnis an oder zeigt an, dass kein Literaturverzeichnis vorhanden ist (none). |
+| appendix                     | Liste von Content           | ()                                   | Enthält Anhänge oder zusätzliches Material, das dem Dokument angehängt ist.                 |
+| location                     | String             | "Berlin"                             | Gibt den Ort an, an dem das Dokument erstellt wird.                                         |
+| deadline                     | String             | "15.03.2024"                          | Setzt die Abgabefrist für das Dokument.                                                    |
+| declaration_of_independence  | Boolean            | true                                 | Gibt an, ob das Dokument eine Unabhängigkeitserklärung enthält.                            |
+| confidential_clause          | Boolean            | false                                | Spezifiziert, ob das Dokument eine Vertraulichkeitsklausel enthält.                        |
+| glossary_entries             | Liste von ( key: String \| Content, short: String \| Content, long: String \| Content ) | ()                                   | Enthält Einträge für ein Glossar der im Dokument verwendeten Begriffe.                     |
+| abbreviation_entries         | Liste von ( key: String \| Content, short: String \| Content, long: String \| Content ) | ()                                   | Enthält Einträge für Abkürzungen, die im Dokument verwendet werden.                         |
+| show_lists_after_content     | Boolean            | false                                | Bestimmt, ob Listen (z.B. Literaturverzeichnis) nach dem Hauptinhaltverzeichnis angezeigt werden sollen. |
+| ai_entries                   | Liste von (String | Content, String | Content) | ()                                   | Enthält Einträge für verwendete künstliche Intelligenz im Dokument. |
+
+
+
 ### 4. Optional: Konfiguriere die Github Action
 In diesem Repository befindet sich eine [GitHub Action](./.github/workflows/main.yml), die du zum Bauen deines Dokumentes verwenden kannst. Mit dieser GitHub Action wird dein Dokument bei jedem Push (Commit oder Tag) gebaut und als Artefakt hochgeladen. Optional kannst du dieses auch über eine Discord Webhook in einen Discord Channel schicken lassen.
 
