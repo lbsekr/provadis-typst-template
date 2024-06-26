@@ -71,7 +71,7 @@ Für die Referenz der ganzen Werte schaue bitte in der `template.typst` Datei na
 | confidential_clause          | Boolean            | false                                | Spezifiziert, ob das Dokument eine Vertraulichkeitsklausel enthält.                        |
 | glossary_entries             | Liste von ( key: String \| Content, short: String \| Content, long: String \| Content ) | ()                                   | Enthält Einträge für ein Glossar der im Dokument verwendeten Begriffe.                     |
 | abbreviation_entries         | Liste von ( key: String \| Content, short: String \| Content, long: String \| Content ) | ()                                   | Enthält Einträge für Abkürzungen, die im Dokument verwendet werden.                         |
-| show_lists_after_content     | Boolean            | false                                | Bestimmt, ob Listen (z.B. Literaturverzeichnis) nach dem Hauptinhaltverzeichnis angezeigt werden sollen. |
+| show_lists_after_content     | Boolean            | false                                | Bestimmt, ob Listen (z.B. Abbildungsverzeichnis) nach dem Hauptinhaltverzeichnis angezeigt werden sollen. |
 | ai_entries                   | Liste von (String \| Content, String \| Content) | ()                                   | Enthält Einträge für verwendete künstliche Intelligenz im Dokument. |
 
 
