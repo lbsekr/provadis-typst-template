@@ -20,7 +20,7 @@
     ( key: "oidc", short: "OIDC", long: "Open ID Connect" ),
   ),
   glossary_entries: (
-    ( key: "haus", short: "Haus", long: "Besteht aus 4 Wänden und einem Dach" ),
+    ( key: "haus", short: "Haus", long: "Konstruktion bestehend aus 4 Wänden und einem Dach" ),
   ),
   ai_entries: (
     ( "OpenAI ChatGPT", "Schreib meine Bachelorarbeit", "Bachelorarbeit schreiben lassen und lieber Fortnite zocken" ),
@@ -36,7 +36,7 @@
 Wenn ich @oidc zum ersten mal erwähne wird es ausgeschrieben. \
 Beim zweiten Mal wird @oidc nur abgekürzt. 
 
-Übrigens gibt es das @haus
+Übrigens gibt es eine @haus
 
 #pagebreak()
 
