@@ -1,4 +1,4 @@
-#import "@preview/glossarium:0.3.0": print-glossary, make-glossary
+#import "@preview/glossarium:0.4.1": print-glossary, make-glossary
 
 #show: make-glossary
 
