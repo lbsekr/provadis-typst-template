@@ -54,6 +54,8 @@ Titel und Untertitel der Arbeit],
   abbreviation_entries: (),
   show_lists_after_content: false,
   ai_entries: (),
+  glossary_disable_back_refs: false,
+  outline_depth: 3,
   body
   ) = {
   let translations = json("translations.json").at(language)
@@ -67,7 +69,7 @@ Titel und Untertitel der Arbeit],
 
       pagebreak()
       heading(heading-text, supplement: translations.vorwort, numbering: none, outlined: true, )
-      print-glossary(entries)
+      print-glossary(entries, disable-back-references: glossary_disable_back_refs)
     }
 
     let glossary() = {
@@ -332,7 +334,7 @@ Titel und Untertitel der Arbeit],
         pagebreak()
       }
       outline(
-        depth: 3,
+        depth: outline_depth,
         indent: true,
         target: heading.where(supplement: [#translations.kapitel])
         .or(heading.where(supplement: [#translations.vorwort]))
@@ -348,7 +350,7 @@ Titel und Untertitel der Arbeit],
 
       outline(
         title: translations.appendix,
-        depth: 3,
+        depth: outline_depth,
         indent: true,
         target: heading.where(supplement: [#translations.appendix]),
       )
