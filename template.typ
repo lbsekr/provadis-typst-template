@@ -419,7 +419,7 @@ Titel und Untertitel der Arbeit],
           context {
             pagebreak()
             heading(translations.appendix, outlined: false)
-            set heading(numbering: "A")
+            set heading(numbering: "A", supplement: translations.appendix)
             counter(heading).update(0)
 
             appendix.join()
