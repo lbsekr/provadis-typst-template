@@ -72,6 +72,15 @@ Beim zweiten Mal wird @oidc nur abgekürzt.
 #lorem(100)
 
 === Unter-Unterpunkt
+#figure(
+  table(
+    columns: 4,
+    [t], [1], [2], [3],
+    [y], [0.3s], [0.4s], [0.8s],
+  ),
+  caption: [Timing results],
+)
+
 #lorem(100)
 
 = Zusammenfassung
