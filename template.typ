@@ -235,6 +235,11 @@ Titel und Untertitel der Arbeit],
 
     counter(page).update(0)
 
+pagebreak() 
+place(
+        center + horizon,
+        text("Placeholder for Steckbrief", style: "italic", size: 14pt)
+      )
 
     // -----------------
     //  PRE-AMBEL STUFF
@@ -387,9 +392,9 @@ Titel und Untertitel der Arbeit],
 
         if bib != none {
           if type(bib) == "string" {
-            bibliography(bib)
+            bibliography(bib, style: "ieee")
           } else {
-            bibliography(..bib)
+            bibliography(..bib, style: "ieee")
           }
         }
 
