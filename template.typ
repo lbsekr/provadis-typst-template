@@ -80,23 +80,56 @@ Titel und Untertitel der Arbeit],
       glossary-page(translations.abkuerzungsverzeichnis, abbreviation_entries)
     }
 
+    // Man könnte die ganzen Tables wsl. abstrahieren. Aber kein Bock
     let table_of_code()  = {
       locate(loc => {
         if counter(figure.where(kind: code_identifier)).final(loc).at(0) > 0 {
-          pagebreak()
-          outline(
-            title: translations.codeausschnittverzeichnis,  
-            depth: 3,
-            indent: true,
-            target: figure.where(kind: code_identifier)
-          )
+            context {
+              pagebreak()
+          
+              show outline: set heading(
+                outlined: true,
+                supplement:  [#translations.vorwort]
+              )
+            
+              outline(
+                title: translations.codeausschnittverzeichnis,  
+                depth: 3,
+                indent: true,
+                target: figure.where(kind: code_identifier)
+              ) 
+            }
+
         }
       })
     }
 
+    let table_of_tables()  = {
+      locate(loc => {
+        if counter(figure.where(kind: table)).final(loc).at(0) > 0 {
+           context {
+              pagebreak()
+          
+              show outline: set heading(
+                outlined: true,
+                supplement:  [#translations.vorwort]
+              )
+
+              outline(
+                title: translations.tabellenverzeichnis,  
+                depth: 3,
+                indent: true,
+                target: figure.where(kind: table)
+              ) 
+            }
+          }
+        }
+      )
+    }
+
     let table_of_figures() = {
       locate(loc => {
-        if counter(figure).final(loc).at(0) > 0 {
+        if counter(figure.where(kind: image)).final(loc).at(0) > 0 {
           context {
             if show_lists_after_content {
               pagebreak()
@@ -116,6 +149,14 @@ Titel und Untertitel der Arbeit],
         }
       })
     }
+
+    let lists = [
+      #table_of_figures()
+      #table_of_code()
+      #table_of_tables()
+      #glossary()
+      #abbreviations()
+    ]
 
     set document(author: authors.map(a => a.name), title: title)
     set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
@@ -312,10 +353,7 @@ place(
     }
 
     if not show_lists_after_content {
-      table_of_figures()
-      table_of_code()
-      glossary()
-      abbreviations()
+      lists
     }
     
     set block(spacing: .65em)
@@ -363,10 +401,7 @@ place(
 
 
     if show_lists_after_content {
-        table_of_figures()
-        table_of_code()
-        glossary()
-        abbreviations()
+      lists
     }
 
     
