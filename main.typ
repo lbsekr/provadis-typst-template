@@ -1,5 +1,5 @@
 #import "template.typ": Template, code
-#import "@preview/glossarium:0.3.0": gls
+#import "@preview/glossarium:0.4.1": gls
 #let translations = json("translations.json").at("de")
 
 #show: Template.with(
