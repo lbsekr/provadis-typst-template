@@ -12,6 +12,13 @@
     supplement: supplement
   )
 }
+#let custom-outline-entry(it) = {
+  let children = it.body.at("children")
+  let prefix = children.slice(0, 4).join([])
+  let body = children.slice(4).join([])
+  return [*#prefix* #body #box(width: 1fr, repeat[.]) #it.page]
+}
+
 
 #let Template(
   language: "de",
@@ -107,17 +114,23 @@ Titel und Untertitel der Arbeit],
     let table_of_tables()  = {
       locate(loc => {
         if counter(figure.where(kind: table)).final(loc).at(0) > 0 {
-           context {
-              pagebreak()
+          context {
+              // pagebreak()
+              v(2em)
           
               show outline: set heading(
                 outlined: true,
                 supplement:  [#translations.vorwort]
               )
 
+              show outline.entry.where(level: 1): custom-outline-entry
+
               outline(
-                title: translations.tabellenverzeichnis,  
-                depth: 3,
+                title: [
+                  #translations.tabellenverzeichnis \
+                  #v(0.5em)
+                ],  
+                depth: 1,
                 indent: true,
                 target: figure.where(kind: table)
               ) 
@@ -138,10 +151,14 @@ Titel und Untertitel der Arbeit],
               outlined: true,
               supplement:  [#translations.vorwort]
             )
+            show outline.entry.where(level: 1): custom-outline-entry
           
             outline(
-              title: translations.abbildungsverzeichnis,  
-              depth: 3,
+              title: [
+                  #translations.abbildungsverzeichnis \
+                  #v(0.5em)
+                ],  
+              depth: 1,
               indent: true,
               target: figure.where(kind: image)
             )
@@ -427,9 +444,9 @@ place(
 
         if bib != none {
           if type(bib) == "string" {
-            bibliography(bib, style: "ieee")
+            bibliography(bib, style: "ieee", title: "Literaturverzeichnis")
           } else {
-            bibliography(..bib, style: "ieee")
+            bibliography(..bib, style: "ieee", title: "Literaturverzeichnis")
           }
         }
 
