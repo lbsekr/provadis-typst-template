@@ -127,8 +127,7 @@ Titel und Untertitel der Arbeit],
 
               outline(
                 title: [
-                  #translations.tabellenverzeichnis \
-                  #v(0.5em)
+                  #translations.tabellenverzeichnis
                 ],  
                 depth: 1,
                 indent: true,
@@ -155,8 +154,7 @@ Titel und Untertitel der Arbeit],
           
             outline(
               title: [
-                  #translations.abbildungsverzeichnis \
-                  #v(0.5em)
+                  #translations.abbildungsverzeichnis
                 ],  
               depth: 1,
               indent: true,
