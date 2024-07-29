@@ -15,8 +15,14 @@
 #let custom-outline-entry(it) = {
   let children = it.body.at("children")
   let prefix = children.slice(0, 4).join([])
-  let body = children.slice(4).join([])
-  return [*#prefix* #body #box(width: 1fr, repeat[.]) #it.page]
+  let body = children.slice(4)
+  if body.len() == 1 and body.at(0).has("text") {
+    return [*#prefix* #body.at(0).text #box(width: 1fr, repeat[.]) #it.page]
+  } else {
+    let i = body.position(it => it.has("text") and it.text == "(Quelle")
+    let bodyWithoutCite = body.slice(0, i)
+    return [*#prefix* #bodyWithoutCite.join([]) #box(width: 1fr, repeat[.]) #it.page]
+  }
 }
 
 
