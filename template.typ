@@ -15,6 +15,7 @@
 
 #let Template(
   language: "de",
+  cover_language: none,
   title: [Textvorlage für wissenschaftliche Arbeiten
 
 Titel und Untertitel der Arbeit],
@@ -56,7 +57,12 @@ Titel und Untertitel der Arbeit],
   ai_entries: (),
   body
   ) = {
+
+  if(cover_language == none) {
+    cover_language = language
+  }
   let translations = json("translations.json").at(language)
+  let cover_translations = json("translations.json").at(cover_language)
 
   // Main Context
   context {
@@ -157,7 +163,7 @@ Titel und Untertitel der Arbeit],
     ]
 
     set document(author: authors.map(a => a.name), title: title)
-    set text(font: "Times New Roman", lang: language, weight: 500, size: 12pt,)
+    set text(font: "Times New Roman", lang: cover_language, weight: 500, size: 12pt,)
     set heading(numbering: "1.1")
     show: make-glossary
 
@@ -237,17 +243,17 @@ Titel und Untertitel der Arbeit],
         rows: (auto, auto),
         row-gutter: 15pt,
         column-gutter: 15pt,
-        [#translations.erstgutachter:],
+        [#cover_translations.erstgutachter:],
         [#first_appraiser],
         ..({if second_appraiser != none {
                 (
-                  [#translations.zweitgutachter:],
+                  [#cover_translations.zweitgutachter:],
                   [#second_appraiser]
                 )
           }}
-        ),    [#translations.betreuung:],
+        ),    [#cover_translations.betreuung:],
         [#supervisor],
-        [#translations.endeDerBearbeitungsfrist:],
+        [#cover_translations.endeDerBearbeitungsfrist:],
         [#deadline],
         v(1em)
       )
@@ -263,6 +269,9 @@ Titel und Untertitel der Arbeit],
     //   ]
     // )
     // v(.5fr)
+    // 
+    
+    set text(lang: language)
 
     if type(acknowledgement) == "content" or type(acknowledgement) == "string" {
       pagebreak()
