@@ -42,12 +42,12 @@
         }
     },
     "en": {
-        "codeausschnittverzeichnis": "List of code-snippet",
+        "codeausschnittverzeichnis": "List of Code-Snippets",
         "codeausschnitt": "Code-Snippet",
         "confidentalClaus": "Confidental Clause",
         "confidentalClausText": "This work may not be made accessible to third parties, with the exception of the supervising lecturers and authorized members of the administration of Provadis University, as well as employees of Deutsche Telekom AG, without the express consent of Deutsche Telekom AG. In justified cases of suspicion, Provadis Hochschule may subject the thesis or parts thereof to a plagiarism check by a plagiarism software provider and temporarily store it in Provadis Hochschule-specific databases set up there. The blocking notice is not effective in the event of a plagiarism check.\n\nReproduction and publication of the work - even in excerpts - is not permitted without the express permission of Deutsche Telekom AG.",
-        "abbildungsverzeichnis": "List of figures",
-        "tabellenverzeichnis": "List of tables",
+        "abbildungsverzeichnis": "List of Figures",
+        "tabellenverzeichnis": "List of Tables",
         "appendix": "Appendix",
         "kapitel": "Chapter",
         "vorwort": "Preface",
@@ -57,7 +57,7 @@
         "endeDerBearbeitungsfrist": "End of the working period",
         "betreuung": "Supervisor",
         "glossar": "Glossary",
-        "abkuerzungsverzeichnis": "List of abbreviations",
+        "abkuerzungsverzeichnis": "List of Abbreviations",
         "ki": {
             "verzeichnis": "AI usage",
             "unbenutzt": "No AI has been used.",
